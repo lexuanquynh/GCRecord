@@ -11,28 +11,28 @@ class RecordAudioViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var playButton: UIButton!
     @IBOutlet var timeLabel: UILabel!
-    
+
     //MARK:- Variables
     var recorder = AKAudioRecorder.shared
     var displayLink = CADisplayLink()
     var duration : CGFloat = 0.0
     var timer : Timer!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initTableView()
         setCircle()
         dismissKeyboard()
     }
-    
+
     private func initTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.contentInset.top = 30
-        
+
         tableView.register(UINib(nibName: "RecordAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "RecordAudioTableViewCell")
     }
-    
+
     @IBAction func playstopButton(_ sender: UIButton) {
         if recorder.isRecording {
             animate(isRecording: true)
@@ -50,7 +50,7 @@ extension RecordAudioViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recorder.getRecordings.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordAudioTableViewCell") as! RecordAudioTableViewCell
         let recording = recorder.getRecordings[indexPath.row]      // FileName
@@ -58,7 +58,7 @@ extension RecordAudioViewController: UITableViewDelegate, UITableViewDataSource 
         cell.bindData(name: name, recording: recording)
         return cell
     }
-    
+
     func tableView(
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
@@ -69,7 +69,7 @@ extension RecordAudioViewController: UITableViewDelegate, UITableViewDataSource 
 //        cell.slider.isHidden = false
         cell.playSlider()
     }
-    
+
     func tableView(
         _ tableView: UITableView,
         didDeselectRowAt indexPath: IndexPath
@@ -77,9 +77,18 @@ extension RecordAudioViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordAudioTableViewCell") as! RecordAudioTableViewCell
 //        cell.slider.isHidden = true
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 88
+    }
+
+    // delete recording
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if recorder.deleteRecording(name: recorder.getRecordings[indexPath.row]) {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
     }
 }
 
@@ -98,16 +107,16 @@ extension RecordAudioViewController {
             }
         }
     }
-    
+
     func setCircle() {
         self.playButton.transform = CGAffineTransform(scaleX: 2, y: 2)
         self.playButton.layer.cornerRadius = 15
     }
-    
+
     func setTimer() {
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateDuration), userInfo: nil, repeats: true)
     }
-    
+
     @objc func updateDuration() {
         if recorder.isRecording && !recorder.isPlaying{
             duration += 1
@@ -125,7 +134,7 @@ extension RecordAudioViewController {
 
 //MARK:- Adding Attributes to UIView
 extension UIView {
-    
+
     @IBInspectable
     var cornerRadius: CGFloat {
         get {
@@ -135,7 +144,7 @@ extension UIView {
             layer.cornerRadius = newValue
         }
     }
-    
+
     @IBInspectable
     var borderWidth: CGFloat {
         get {
@@ -145,7 +154,7 @@ extension UIView {
             layer.borderWidth = newValue
         }
     }
-    
+
     @IBInspectable
     var borderColor: UIColor? {
         get {
@@ -172,7 +181,7 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    
+
     // Calling dismiss selector actions
     @objc func dismissKeyboard() {
         view.endEditing(true)

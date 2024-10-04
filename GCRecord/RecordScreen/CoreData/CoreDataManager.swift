@@ -36,5 +36,18 @@ class CoreDataManager {
         }
         return recordings
     }
+
+    // update recording
+    func updateRecording(recording: Recording, newRecordingName: String) {
+        recording.recordingName = newRecordingName
+        coreDataStack.saveContext()
+    }
+
+    // delete recording
+    func deleteRecording(recording: Recording) {
+        context.delete(recording)
+        coreDataStack.saveContext()
+    }
+
 }
 
