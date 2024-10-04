@@ -303,7 +303,7 @@ extension CGFloat{
 
 //MARK:- Computed property to get list of recordings
 extension AKAudioRecorder{
-    var getRecordings : [String]{
+    var getRecordings : [String] {
         return self.myRecordings
     }
 }
