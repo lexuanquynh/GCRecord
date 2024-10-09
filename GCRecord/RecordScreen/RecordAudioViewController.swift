@@ -56,6 +56,15 @@ extension RecordAudioViewController: UITableViewDelegate, UITableViewDataSource 
         let recording = recorder.getRecordings[indexPath.row]      // FileName
         let name = "New Recording " + String(indexPath.row + 1)    // New Recording 1,2,3...
         cell.bindData(name: name, recording: recording)
+        cell.endEditing = { text in
+            debugPrint("User entered: \(text)")
+            // call update recording
+            let recordings = CoreDataManager.shared.fetchRecordings()
+            let recording = recordings[indexPath.row]
+            CoreDataManager.shared
+                .updateRecording(recording: recording, newRecordingName: text)
+        }
+
         return cell
     }
 
@@ -74,7 +83,7 @@ extension RecordAudioViewController: UITableViewDelegate, UITableViewDataSource 
         _ tableView: UITableView,
         didDeselectRowAt indexPath: IndexPath
     ) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecordAudioTableViewCell") as! RecordAudioTableViewCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "RecordAudioTableViewCell") as! RecordAudioTableViewCell
 //        cell.slider.isHidden = true
     }
 
