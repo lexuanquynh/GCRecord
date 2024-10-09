@@ -56,6 +56,7 @@ extension RecordAudioViewController: UITableViewDelegate, UITableViewDataSource 
         let recording = recorder.getRecordings[indexPath.row]      // FileName
         let name = "New Recording " + String(indexPath.row + 1)    // New Recording 1,2,3...
         cell.bindData(name: name, recording: recording)
+
         cell.endEditing = { text in
             debugPrint("User entered: \(text)")
             // call update recording
@@ -64,7 +65,7 @@ extension RecordAudioViewController: UITableViewDelegate, UITableViewDataSource 
             CoreDataManager.shared
                 .updateRecording(recording: recording, newRecordingName: text)
         }
-
+        cell.sendSubviewToBack(cell.contentView)
         return cell
     }
 
@@ -75,20 +76,20 @@ extension RecordAudioViewController: UITableViewDelegate, UITableViewDataSource 
         let name = recorder.getRecordings[indexPath.row]
         recorder.play(name: name)
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordAudioTableViewCell") as! RecordAudioTableViewCell
-//        cell.slider.isHidden = false
+//        cell.soundSlider.isHidden = false
         cell.playSlider()
     }
 
-    func tableView(
-        _ tableView: UITableView,
-        didDeselectRowAt indexPath: IndexPath
-    ) {
+//    func tableView(
+//        _ tableView: UITableView,
+//        didDeselectRowAt indexPath: IndexPath
+//    ) {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "RecordAudioTableViewCell") as! RecordAudioTableViewCell
-//        cell.slider.isHidden = true
-    }
+//        cell.soundSlider.isHidden = true
+//    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 88
+        return 120
     }
 
     // delete recording

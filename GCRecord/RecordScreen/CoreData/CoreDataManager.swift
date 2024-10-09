@@ -18,11 +18,17 @@ class CoreDataManager {
     // MARK: - Init
     private init() {}
 
-    func saveRecordingToCoreData(fileName: String, audioData: Data, recordingName: String) {
+    func saveRecordingToCoreData(
+        fileName: String,
+        audioData: Data,
+        recordingName: String,
+        duration: Float
+    ) {
         let recording = Recording(context: context)
         recording.fileName = fileName
         recording.audioData = audioData
         recording.recordingName = recordingName
+        recording.duration = duration
         coreDataStack.saveContext()
     }
 
@@ -36,6 +42,21 @@ class CoreDataManager {
         }
         return recordings
     }
+
+    // fetch recording by name
+    func fetchRecordingByName(name: String) -> Recording? {
+        let fetchRequest: NSFetchRequest<Recording> = Recording.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "recordingName == %@", name)
+        do {
+            let recordings = try context.fetch(fetchRequest)
+            return recordings.first
+        } catch {
+            print("Error fetching recording by name: \(error)")
+        }
+        return nil
+    }
+
+
 
     // update recording
     func updateRecording(recording: Recording, newRecordingName: String) {

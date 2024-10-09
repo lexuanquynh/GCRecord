@@ -2,7 +2,7 @@
 //  Recording+CoreDataClass.swift
 //  GCRecord
 //
-//  Created by Le Xuan Quynh on 4/10/24.
+//  Created by Le Xuan Quynh on 9/10/24.
 //
 //
 

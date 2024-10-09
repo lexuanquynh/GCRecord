@@ -2,7 +2,7 @@
 //  Recording+CoreDataProperties.swift
 //  GCRecord
 //
-//  Created by Le Xuan Quynh on 4/10/24.
+//  Created by Le Xuan Quynh on 9/10/24.
 //
 //
 
@@ -19,6 +19,7 @@ extension Recording {
     @NSManaged public var audioData: Data?
     @NSManaged public var fileName: String?
     @NSManaged public var recordingName: String?
+    @NSManaged public var duration: Float
 
 }
 
