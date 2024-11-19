@@ -23,7 +23,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89r-fV-Udc" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
                     <rect key="frame" x="10" y="75" width="573" height="45"/>
                     <constraints>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="W7i-t6-r7P"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="W7i-t6-r7P"/>
                         <constraint firstAttribute="height" constant="45" id="diK-pE-xcg"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -65,6 +65,9 @@
                     <buttonConfiguration key="configuration" style="plain" title="録音開始">
                         <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="onRecordTouched:" destination="-1" eventType="touchUpInside" id="qdg-uY-OiD"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="薬歴引用（ダブルタップの場合はSで個別引用）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mnd-cA-hsU">
                     <rect key="frame" x="10" y="140" width="738" height="17"/>

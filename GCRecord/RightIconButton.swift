@@ -42,6 +42,10 @@ public class RightIconButton: UIButton {
         // Center the title and image vertically
         titleLabel.center.y = bounds.height / 2
         imageView.center.y = bounds.height / 2
+        
+        // set alight left for tex is 10
+        titleLabel.frame.origin.x = 10
+        
     }
 }
 
