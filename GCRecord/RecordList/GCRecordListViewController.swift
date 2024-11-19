@@ -66,30 +66,12 @@ class GCRecordListViewController: UIViewController {
     }
     
     @IBAction func onRecordTouched(_ sender: UIButton) {
-        // show alert with title: 録音
-        // message:
-        // 服薬指導の録音を開始しますか tick icon and 以降、このポップアップを表示せず録音を開始する。
-        // 2 buttons: キャンセル and OK
-//        let alert = UIAlertController(title: "録音", message: "服薬指導の録音を開始しますか", preferredStyle: .alert)
-//        alert.addTitleText(title: "録音", image: UIImage(named: "tick_ico")!)
-//
-//
-//
-//        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
-//        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
-//
-//        present(alert, animated: true, completion: nil)
-        
         let alertVC = GCAlertCustomViewController()
         alertVC.setCancelButtonTitle("キャンセル")
         alertVC.setOkButtonTitle("OK")
         alertVC.titleText = "録音"
         alertVC.messageText = "服薬指導の録音を開始しますか"
         alertVC.checkBoxText = "以降、このポップアップを表示せず録音を開始する。"
-//        alertVC.messageText = """
-//        This is a very long message to test if the text will wrap correctly when the content is too large to fit in a single line.
-//        Make sure it looks good on different devices, and it adjusts the height dynamically!
-//        """
         alertVC.onOkTapped = { isChecked in
             print("OK tapped. Checkbox selected: \(isChecked)")
         }
@@ -99,8 +81,10 @@ class GCRecordListViewController: UIViewController {
         alertVC.modalPresentationStyle = .overFullScreen
         alertVC.modalTransitionStyle = .crossDissolve
         present(alertVC, animated: true)
-
     }
     
+    @IBAction func onInfoButtonTouched(_ sender: UIButton) {
+        
+    }
     
 }

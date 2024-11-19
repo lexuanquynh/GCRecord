@@ -64,7 +64,7 @@ class GCAlertCustomViewController: UIViewController {
         checkBoxButton.setImage(UIImage(named: "tick_ico"), for: .selected)
         checkBoxButton.addTarget(self, action: #selector(toggleCheckBox), for: .touchUpInside)
         // fix checkBoxButton width
-        checkBoxButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        checkBoxButton.widthAnchor.constraint(equalToConstant: 45).isActive = true
         
         checkBoxLabel.font = UIFont.systemFont(ofSize: 14)
         checkBoxLabel.textAlignment = .left
