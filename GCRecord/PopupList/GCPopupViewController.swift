@@ -101,18 +101,3 @@ class GCPopupViewController: UIViewController, UITableViewDelegate, UITableViewD
         popupHeight = height
     }
 }
-
-private extension UIColor {
-    // Helper to create UIColor from hex string (e.g., "#F2F2F2")
-    convenience init(hex: String) {
-        let hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "#", with: "")
-        var hexInt: UInt64 = 0
-        Scanner(string: hexSanitized).scanHexInt64(&hexInt)
-        self.init(
-            red: CGFloat((hexInt & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((hexInt & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(hexInt & 0x0000FF) / 255.0,
-            alpha: 1.0
-        )
-    }
-}

@@ -42,6 +42,11 @@ class GCSOAPGenerationViewController: UIViewController {
         recordListContainerView.addSubview(recordListVC.view)
         recordListVC.didMove(toParent: self)
         
+        // add GCCurrentAISOAPViewController to soapListContainerView
+        let soapListVC = GCCurrentAISOAPViewController()
+        self.addChild(soapListVC)
+        soapListContainerView.addSubview(soapListVC.view)
+        soapListVC.didMove(toParent: self)
     }
     
     override func viewDidLayoutSubviews() {

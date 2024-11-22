@@ -11,6 +11,7 @@ class GCRecordListViewController: UIViewController {
     @IBOutlet weak var dateSelectButton: RightIconButton!
     @IBOutlet weak var recordButton: GCButton!
     @IBOutlet weak var timeRemainingLabel: UILabel!
+    @IBOutlet weak var transcriptTableView: UITableView!
     
     private var selectedPopupIndex: IndexPath?
     
@@ -23,6 +24,7 @@ class GCRecordListViewController: UIViewController {
         
         initUI()
         initViewModel()
+        
     }
     
     
@@ -41,6 +43,11 @@ class GCRecordListViewController: UIViewController {
         recordButton.setTitleColor(.black, for: .normal)
         
         timeRemainingLabel.isHidden = true
+        
+        // for tableView
+        transcriptTableView.register(UINib(nibName: "GCTranscriptTableViewCell", bundle: nil), forCellReuseIdentifier: "GCTranscriptTableViewCell")
+        transcriptTableView.delegate = self
+        transcriptTableView.dataSource = self
     }
     
     private func initViewModel() {
@@ -60,7 +67,7 @@ class GCRecordListViewController: UIViewController {
         }
     }
     
-    private func startRecordState(_ isStarted: Bool) {
+    private func startRecordState(_ isStarted: Bool, timeout: Bool = false) {
         self.isStartedRecord = isStarted
         
         if isStarted {
@@ -69,10 +76,12 @@ class GCRecordListViewController: UIViewController {
             recordButton.setGradient(type: .lightPink)
             viewModel.startRecord(onComplete: { [weak self] in
                 self?.showAlertRecordFinish()
-                self?.startRecordState(false)
+                self?.startRecordState(false, timeout: true)
             })
         } else {
-            timeRemainingLabel.isHidden = true
+            if !timeout {
+                timeRemainingLabel.isHidden = true
+            }
             recordButton.setTitle("録音開始", for: .normal)
             recordButton.setGradient(type: .registButton)
             viewModel.stopRecord()
@@ -87,8 +96,10 @@ class GCRecordListViewController: UIViewController {
     
     private func showPopup(at button: UIButton) {
         let popupData = [
+            "22/10/19 10:30 仮管理薬剤師",
+            "22/10/29 10:30 仮管理薬剤師",
             "22/10/09 10:30 仮管理薬剤師",
-            "22/10/09 10:30 仮管理薬剤師",
+            "22/10/19 10:30 仮管理薬剤師",
             "22/10/09 10:30 仮管理薬剤師"
         ]
         
@@ -96,7 +107,7 @@ class GCRecordListViewController: UIViewController {
         
         
         // Set the popup width equal to the button width
-        popupVC.setPopupSize(width: button.frame.width, height: 300)
+        popupVC.setPopupSize(width: button.frame.width, height: 250)
         
         // Callback for item selection
         popupVC.didSelectItem = { [weak self] selectedItem in
@@ -152,6 +163,26 @@ class GCRecordListViewController: UIViewController {
         let alertVC = UIAlertController(title: "録音", message: "録音を開始すると、録音が開始されます。", preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertVC, animated: true)
+    }
+    
+}
+
+
+// MARK: - UITableViewDelegate & UITableViewDataSource
+extension GCRecordListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GCTranscriptTableViewCell", for: indexPath) as! GCTranscriptTableViewCell
+        cell.binData("選択（タップ）した文章は、強調表示されます。選択したものを上部のSOAP等で薬歴に引用することができます。​", index: indexPath.row)
+        return cell
+    }
+    
+    // automatic height
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
 }

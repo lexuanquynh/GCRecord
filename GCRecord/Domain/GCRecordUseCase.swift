@@ -21,7 +21,7 @@ final class GCDefaultRecordUseCase: GCRecordUseCase {
     
     private var timeRemainingObservable: Observable<Int>
     // Max time record 15 minutes
-    private let kMaxRecordTime: Int = 15 * 60
+    private let kMaxRecordTime: Int = 2
     private var timer: Timer?
     private var remainingTimeValue: Int = 0
     private var onCompleteCallback: (() -> Void)?
