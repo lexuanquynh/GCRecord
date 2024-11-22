@@ -46,9 +46,18 @@ class GCRecordListViewController: UIViewController {
     private func initViewModel() {
         let recordUseCase = GCDefaultRecordUseCase()
         viewModel = GCRecordListViewModel(recordUseCase: recordUseCase)
-//        viewModel.timeRemaining.bind { [weak self] timeRemaining in
-//            self?.timeRemainingLabel.text = timeRemaining
-//        }
+        
+        viewModel.timeRemaining.observe(on: self) { [weak self] remainingTime in
+            guard let self = self else { return }
+            // set title with format 残り mm:ss
+           let minutes = remainingTime / 60
+              let seconds = remainingTime % 60
+            // if minutes < 10 then add 0 before minutes
+            let minuteString = minutes < 10 ? "0\(minutes)" : "\(minutes)"
+            // if seconds < 10 then add 0 before seconds
+            let secondString = seconds < 10 ? "0\(seconds)" : "\(seconds)"
+            self.timeRemainingLabel.text = "残り \(minuteString):\(secondString)"
+        }
     }
     
     private func startRecordState(_ isStarted: Bool) {

@@ -17,16 +17,19 @@ protocol GCRecordListViewModelInput {
 
 protocol GCRecordListViewModelOutput {
     var hideRecordAlert: Bool { get }
+    var timeRemaining: Observable<Int> { get }
 }
 
 typealias GCRecordListViewModelType = GCRecordListViewModelInput & GCRecordListViewModelOutput
 
 final class GCRecordListViewModel: GCRecordListViewModelType {
+    private var timeRemainingObservable: Observable<Int>
     
     private let recordUseCase: GCRecordUseCase
     
     init(recordUseCase: GCRecordUseCase) {
         self.recordUseCase = recordUseCase
+        self.timeRemainingObservable = Observable(0)
     }
     
     func saveHideRecordAlert(_ hideRecordAlert: Bool) {
@@ -38,12 +41,19 @@ final class GCRecordListViewModel: GCRecordListViewModelType {
     }
     
     func startRecord(onComplete: @escaping () -> Void) {
-        recordUseCase.startRecord(onComplete: onComplete)
-            
+        recordUseCase.startRecord {
+            onComplete()
+        }
     }
     
     func stopRecord() {
         recordUseCase.stopRecord()
     }
     
+    var timeRemaining: Observable<Int> {
+        if let defaultUseCase = recordUseCase as? GCDefaultRecordUseCase {
+            return defaultUseCase.remainingTime() // Return from `GCDefaultRecordUseCase`
+        }
+        return Observable(0) // If `recordUseCase` is not `GCDefaultRecord
+    }
 }

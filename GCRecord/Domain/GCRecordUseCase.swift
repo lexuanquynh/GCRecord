@@ -12,7 +12,6 @@ protocol GCRecordUseCase {
     func isHideRecordAlert() -> Bool
     func startRecord(onComplete: @escaping () -> Void)
     func stopRecord()
-    func remainingTime() -> Int
 }
 
 final class GCDefaultRecordUseCase: GCRecordUseCase {
@@ -20,12 +19,16 @@ final class GCDefaultRecordUseCase: GCRecordUseCase {
         return GCDefaultRecordRespository()
     }()
     
+    private var timeRemainingObservable: Observable<Int>
     private let kMaxRecordTime: Int = 10 // Max time record 10s
     private var timer: Timer?
     private var remainingTimeValue: Int = 0
     private var onCompleteCallback: (() -> Void)?
     
-    init() {}
+    init() {
+        self.remainingTimeValue = kMaxRecordTime
+        self.timeRemainingObservable = Observable(remainingTimeValue)
+    }
     
     // MARK: - GCRecordUseCase
     
@@ -38,22 +41,19 @@ final class GCDefaultRecordUseCase: GCRecordUseCase {
     }
     
     func startRecord(onComplete: @escaping () -> Void) {
-        debugPrint("Start Record")
-        stopTimerIfNeeded()
-        
+        timer?.invalidate()
         remainingTimeValue = kMaxRecordTime
-        onCompleteCallback = onComplete
+        timeRemainingObservable.value = remainingTimeValue
         
-        // Khởi chạy Timer
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateRemainingTime), userInfo: nil, repeats: true)
-    }
-    
-    @objc private func updateRemainingTime() {
-        remainingTimeValue -= 1
-        debugPrint("Remaining time: \(remainingTimeValue)s")
-        
-        if remainingTimeValue <= 0 {
-            timerStopRecord()
+        // Start timer
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            self?.remainingTimeValue -= 1
+            self?.timeRemainingObservable.value = self?.remainingTimeValue ?? 0
+            
+            if self?.remainingTimeValue ?? 0 <= 0 {
+                timer.invalidate()
+                onComplete()
+            }
         }
     }
     
@@ -67,8 +67,8 @@ final class GCDefaultRecordUseCase: GCRecordUseCase {
         stopTimerIfNeeded()
     }
     
-    func remainingTime() -> Int {
-        return remainingTimeValue
+    func remainingTime() -> Observable<Int> {
+        return timeRemainingObservable
     }
     
     // MARK: - Helper
