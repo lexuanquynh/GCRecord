@@ -22,9 +22,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89r-fV-Udc" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="10" y="99" width="281" height="35"/>
+                    <rect key="frame" x="10" y="99" width="210" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="W7i-t6-r7P"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="W7i-t6-r7P"/>
                         <constraint firstAttribute="height" constant="35" id="diK-pE-xcg"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -33,7 +33,7 @@
                     <state key="normal" title="SOAP生成(クラスタリングあり)"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJh-nc-MD2" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="301" y="99" width="90" height="35"/>
+                    <rect key="frame" x="230" y="99" width="90" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="0ak-dc-K8Q"/>
                         <constraint firstAttribute="width" constant="90" id="scN-mM-tlM"/>
@@ -44,7 +44,7 @@
                     <state key="normal" title="SOAP生成"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEJ-5t-Jj4" userLabel="InfoButton">
-                    <rect key="frame" x="395" y="99" width="35" height="35"/>
+                    <rect key="frame" x="324" y="99" width="35" height="35"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="35" id="0cy-0s-50h"/>
                         <constraint firstAttribute="height" constant="35" id="qCV-fz-niC"/>
@@ -183,7 +183,6 @@
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="centerY" secondItem="Uzn-aG-pXk" secondAttribute="centerY" id="G9b-xX-7zR"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="centerY" secondItem="nPw-Sc-H8H" secondAttribute="centerY" id="HtT-De-DCk"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="width" secondItem="kIo-hh-4uh" secondAttribute="width" id="JDh-hB-6ws"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wEJ-5t-Jj4" secondAttribute="trailing" constant="10" id="JbP-7p-7US"/>
                 <constraint firstItem="meL-PZ-4gx" firstAttribute="leading" secondItem="tQZ-n1-e5R" secondAttribute="trailing" constant="10" id="Lof-QW-NqF"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="height" secondItem="Tpt-Qz-vN2" secondAttribute="height" id="NkI-pq-bsO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Qsb-yM-8Vv" secondAttribute="bottom" constant="10" id="NqE-yg-8CB"/>
@@ -215,6 +214,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eJt-Zv-twt" secondAttribute="trailing" constant="10" id="nqL-S6-bAf"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="width" secondItem="meL-PZ-4gx" secondAttribute="width" id="oiA-eK-Wen"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="height" secondItem="hQH-SZ-Ccf" secondAttribute="height" id="rUS-cb-Gc5"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wEJ-5t-Jj4" secondAttribute="trailing" constant="4" id="rtP-A2-sBE"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="top" secondItem="Mnd-cA-hsU" secondAttribute="bottom" constant="20" id="vpZ-mp-XlZ"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="height" secondItem="nPw-Sc-H8H" secondAttribute="height" id="wYk-RU-gj6"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="centerY" secondItem="kIo-hh-4uh" secondAttribute="centerY" id="wec-Xr-1Cs"/>
