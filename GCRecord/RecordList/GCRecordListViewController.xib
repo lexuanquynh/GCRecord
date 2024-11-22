@@ -86,13 +86,13 @@
                                 <action selector="onRecordTouched:" destination="-1" eventType="touchUpInside" id="qdg-uY-OiD"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="残り 15:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyW-in-g3h">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 残り 15:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyW-in-g3h">
                             <rect key="frame" x="0.0" y="43" width="80" height="17"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="17" id="L43-rw-TMN"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="ooz-GH-yOj"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>

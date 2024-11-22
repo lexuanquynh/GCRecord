@@ -56,7 +56,7 @@ class GCRecordListViewController: UIViewController {
             let minuteString = minutes < 10 ? "0\(minutes)" : "\(minutes)"
             // if seconds < 10 then add 0 before seconds
             let secondString = seconds < 10 ? "0\(seconds)" : "\(seconds)"
-            self.timeRemainingLabel.text = "残り \(minuteString):\(secondString)"
+            self.timeRemainingLabel.text = "　残り \(minuteString):\(secondString)"
         }
     }
     
