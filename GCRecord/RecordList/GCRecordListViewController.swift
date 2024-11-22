@@ -58,13 +58,22 @@ class GCRecordListViewController: UIViewController {
             timeRemainingLabel.isHidden = false
             recordButton.setTitle("録音中", for: .normal)
             recordButton.setGradient(type: .lightPink)
-            viewModel.startRecord()
+            viewModel.startRecord(onComplete: { [weak self] in
+                self?.showAlertRecordFinish()
+                self?.startRecordState(false)
+            })
         } else {
             timeRemainingLabel.isHidden = true
             recordButton.setTitle("録音開始", for: .normal)
             recordButton.setGradient(type: .registButton)
             viewModel.stopRecord()
         }
+    }
+    
+    private func showAlertRecordFinish() {
+        let alertVC = UIAlertController(title: "録音", message: "録音時間が15分を超えたため、録音を停止しました。", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertVC, animated: true)
     }
     
     private func showPopup(at button: UIButton) {

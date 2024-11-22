@@ -10,7 +10,7 @@ import Foundation
 
 protocol GCRecordListViewModelInput {
     func saveHideRecordAlert(_ hideRecordAlert: Bool)
-    func startRecord()
+    func startRecord(onComplete: @escaping () -> Void)
     func stopRecord()
 }
 
@@ -37,12 +37,13 @@ final class GCRecordListViewModel: GCRecordListViewModelType {
         return recordUseCase.isHideRecordAlert()
     }
     
-    func startRecord() {
-        debugPrint("Start Record")
+    func startRecord(onComplete: @escaping () -> Void) {
+        recordUseCase.startRecord(onComplete: onComplete)
+            
     }
     
     func stopRecord() {
-        debugPrint("Stop Record")
+        recordUseCase.stopRecord()
     }
     
 }
