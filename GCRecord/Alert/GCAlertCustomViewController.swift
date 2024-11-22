@@ -41,7 +41,8 @@ class GCAlertCustomViewController: UIViewController {
         
         // Container View
         let containerView = UIView()
-        containerView.backgroundColor = .white
+        // background is groupTableViewBackground
+        containerView.backgroundColor = UIColor.systemGroupedBackground
         containerView.layer.cornerRadius = 10
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)

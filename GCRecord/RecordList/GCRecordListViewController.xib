@@ -12,43 +12,42 @@
             <connections>
                 <outlet property="dateSelectButton" destination="rnM-3g-7HF" id="Gzf-CL-3tR"/>
                 <outlet property="recordButton" destination="s57-sO-qkP" id="EJi-J4-HgA"/>
+                <outlet property="timeRemainingLabel" destination="dyW-in-g3h" id="eIX-i3-XBl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <rect key="frame" x="0.0" y="0.0" width="440" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89r-fV-Udc" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="10" y="79" width="573" height="45"/>
+                    <rect key="frame" x="10" y="99" width="281" height="35"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="W7i-t6-r7P"/>
-                        <constraint firstAttribute="height" constant="45" id="diK-pE-xcg"/>
+                        <constraint firstAttribute="height" constant="35" id="diK-pE-xcg"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="SOAP生成(クラスタリングあり)">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                    </buttonConfiguration>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="SOAP生成(クラスタリングあり)"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJh-nc-MD2" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="603" y="79" width="90" height="45"/>
+                    <rect key="frame" x="301" y="99" width="90" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="45" id="0ak-dc-K8Q"/>
+                        <constraint firstAttribute="height" constant="35" id="0ak-dc-K8Q"/>
                         <constraint firstAttribute="width" constant="90" id="scN-mM-tlM"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="SOAP生成">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                    </buttonConfiguration>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="SOAP生成"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEJ-5t-Jj4" userLabel="InfoButton" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="713" y="79" width="45" height="45"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEJ-5t-Jj4" userLabel="InfoButton">
+                    <rect key="frame" x="395" y="99" width="35" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="45" id="0cy-0s-50h"/>
-                        <constraint firstAttribute="height" constant="45" id="qCV-fz-niC"/>
+                        <constraint firstAttribute="width" constant="35" id="0cy-0s-50h"/>
+                        <constraint firstAttribute="height" constant="35" id="qCV-fz-niC"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
@@ -57,100 +56,11 @@
                         <action selector="onInfoButtonTouched:" destination="-1" eventType="touchUpInside" id="4NQ-qv-C1l"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s57-sO-qkP" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="678" y="29" width="80" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="80" id="Oxp-vx-XYA"/>
-                        <constraint firstAttribute="height" constant="40" id="T0K-cN-sdd"/>
-                    </constraints>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="録音開始">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="onRecordTouched:" destination="-1" eventType="touchUpInside" id="qdg-uY-OiD"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="薬歴引用（ダブルタップの場合はSで個別引用）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mnd-cA-hsU">
-                    <rect key="frame" x="10" y="144" width="738" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRf-aZ-Nps" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="10" y="181" width="78" height="31"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="S">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                    </buttonConfiguration>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIo-hh-4uh" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="98" y="181" width="78" height="31"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="O">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                    </buttonConfiguration>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQH-SZ-Ccf" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="186" y="181" width="78" height="31"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="A">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                    </buttonConfiguration>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzn-aG-pXk" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="274" y="181" width="78" height="31"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="EP">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                    </buttonConfiguration>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPw-Sc-H8H" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="362" y="181" width="78" height="31"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="OP">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                    </buttonConfiguration>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQZ-n1-e5R" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="450" y="181" width="78" height="31"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="CP">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                    </buttonConfiguration>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meL-PZ-4gx" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="538" y="181" width="78" height="31"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="FR">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                    </buttonConfiguration>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tpt-Qz-vN2" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="626" y="181" width="132" height="31"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="全選択">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                    </buttonConfiguration>
-                </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qsb-yM-8Vv">
-                    <rect key="frame" x="10" y="232" width="748" height="782"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnM-3g-7HF" customClass="RightIconButton" customModule="GCRecord" customModuleProvider="target">
-                    <rect key="frame" x="10" y="29" width="658" height="40"/>
+                    <rect key="frame" x="10" y="29" width="330" height="35"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="1Z7-Vj-BWg"/>
+                        <constraint firstAttribute="height" constant="35" id="1Z7-Vj-BWg"/>
                     </constraints>
                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                     <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
@@ -159,6 +69,104 @@
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eJt-Zv-twt">
+                    <rect key="frame" x="350" y="29" width="80" height="60"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s57-sO-qkP" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="Oxp-vx-XYA"/>
+                                <constraint firstAttribute="height" constant="35" id="T0K-cN-sdd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="録音開始"/>
+                            <connections>
+                                <action selector="onRecordTouched:" destination="-1" eventType="touchUpInside" id="qdg-uY-OiD"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="残り 15:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyW-in-g3h">
+                            <rect key="frame" x="0.0" y="43" width="80" height="17"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="17" id="L43-rw-TMN"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="ooz-GH-yOj"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="薬歴引用（ダブルタップの場合はSで個別引用）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mnd-cA-hsU">
+                    <rect key="frame" x="10" y="154" width="410" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRf-aZ-Nps" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
+                    <rect key="frame" x="10" y="191" width="40.5" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Ia7-F4-zcA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="S"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIo-hh-4uh" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
+                    <rect key="frame" x="60.5" y="191" width="40" height="35"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="O"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQH-SZ-Ccf" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
+                    <rect key="frame" x="110.5" y="191" width="40.5" height="35"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="A"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzn-aG-pXk" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
+                    <rect key="frame" x="161" y="191" width="40" height="35"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="EP"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPw-Sc-H8H" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
+                    <rect key="frame" x="211" y="191" width="40.5" height="35"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="OP"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQZ-n1-e5R" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
+                    <rect key="frame" x="261.5" y="191" width="40" height="35"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="CP"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meL-PZ-4gx" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
+                    <rect key="frame" x="311.5" y="191" width="40.5" height="35"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="FR"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tpt-Qz-vN2" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
+                    <rect key="frame" x="362" y="191" width="68" height="35"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="全選択"/>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qsb-yM-8Vv">
+                    <rect key="frame" x="10" y="246" width="420" height="768"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
@@ -173,38 +181,38 @@
                 <constraint firstItem="OJh-nc-MD2" firstAttribute="centerY" secondItem="89r-fV-Udc" secondAttribute="centerY" id="6GO-lt-SXX"/>
                 <constraint firstItem="rnM-3g-7HF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="FUN-ny-kdF"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="centerY" secondItem="Uzn-aG-pXk" secondAttribute="centerY" id="G9b-xX-7zR"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="s57-sO-qkP" secondAttribute="trailing" constant="10" id="HmC-bg-yPt"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="centerY" secondItem="nPw-Sc-H8H" secondAttribute="centerY" id="HtT-De-DCk"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="width" secondItem="kIo-hh-4uh" secondAttribute="width" id="JDh-hB-6ws"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wEJ-5t-Jj4" secondAttribute="trailing" constant="10" id="JbP-7p-7US"/>
                 <constraint firstItem="meL-PZ-4gx" firstAttribute="leading" secondItem="tQZ-n1-e5R" secondAttribute="trailing" constant="10" id="Lof-QW-NqF"/>
-                <constraint firstItem="s57-sO-qkP" firstAttribute="leading" secondItem="rnM-3g-7HF" secondAttribute="trailing" constant="10" id="NdK-sQ-F6y"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="height" secondItem="Tpt-Qz-vN2" secondAttribute="height" id="NkI-pq-bsO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Qsb-yM-8Vv" secondAttribute="bottom" constant="10" id="NqE-yg-8CB"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Mnd-cA-hsU" secondAttribute="trailing" constant="20" id="PcZ-Gh-Fz9"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="height" secondItem="meL-PZ-4gx" secondAttribute="height" id="Qqd-e9-Van"/>
-                <constraint firstItem="89r-fV-Udc" firstAttribute="top" secondItem="rnM-3g-7HF" secondAttribute="bottom" constant="10" id="Rdh-ps-BMP"/>
                 <constraint firstItem="wEJ-5t-Jj4" firstAttribute="centerY" secondItem="OJh-nc-MD2" secondAttribute="centerY" id="ToF-ot-RHK"/>
+                <constraint firstItem="eJt-Zv-twt" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="9" id="UcR-d0-5Mm"/>
                 <constraint firstItem="89r-fV-Udc" firstAttribute="leading" secondItem="rnM-3g-7HF" secondAttribute="leading" id="VOV-Aq-AVq"/>
                 <constraint firstItem="Uzn-aG-pXk" firstAttribute="leading" secondItem="hQH-SZ-Ccf" secondAttribute="trailing" constant="10" id="Vbu-ad-YNr"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="height" secondItem="tQZ-n1-e5R" secondAttribute="height" id="XD8-LD-L0C"/>
                 <constraint firstItem="nPw-Sc-H8H" firstAttribute="leading" secondItem="Uzn-aG-pXk" secondAttribute="trailing" constant="10" id="ZBY-tF-DTD"/>
-                <constraint firstItem="s57-sO-qkP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="9" id="Zqs-Sp-akZ"/>
                 <constraint firstItem="Tpt-Qz-vN2" firstAttribute="leading" secondItem="meL-PZ-4gx" secondAttribute="trailing" constant="10" id="aXh-Fz-BQU"/>
                 <constraint firstItem="Mnd-cA-hsU" firstAttribute="top" secondItem="89r-fV-Udc" secondAttribute="bottom" constant="20" id="bee-XI-6Ta"/>
-                <constraint firstItem="wEJ-5t-Jj4" firstAttribute="leading" secondItem="OJh-nc-MD2" secondAttribute="trailing" constant="20" id="bfJ-JU-ZnX"/>
+                <constraint firstItem="wEJ-5t-Jj4" firstAttribute="leading" secondItem="OJh-nc-MD2" secondAttribute="trailing" constant="4" id="bfJ-JU-ZnX"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="height" secondItem="kIo-hh-4uh" secondAttribute="height" id="bt2-XO-Vyd"/>
-                <constraint firstItem="OJh-nc-MD2" firstAttribute="leading" secondItem="89r-fV-Udc" secondAttribute="trailing" constant="20" id="cBK-3e-Ehy"/>
+                <constraint firstItem="OJh-nc-MD2" firstAttribute="leading" secondItem="89r-fV-Udc" secondAttribute="trailing" constant="10" id="cBK-3e-Ehy"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="height" secondItem="Uzn-aG-pXk" secondAttribute="height" id="cDY-kl-Yqo"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="width" secondItem="hQH-SZ-Ccf" secondAttribute="width" id="cUL-Vf-bML"/>
                 <constraint firstItem="hQH-SZ-Ccf" firstAttribute="leading" secondItem="kIo-hh-4uh" secondAttribute="trailing" constant="10" id="dpI-PL-OB0"/>
+                <constraint firstItem="eJt-Zv-twt" firstAttribute="leading" secondItem="rnM-3g-7HF" secondAttribute="trailing" constant="10" id="eVH-aH-zAb"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="width" secondItem="Uzn-aG-pXk" secondAttribute="width" id="gY5-Oc-vJC"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="width" secondItem="tQZ-n1-e5R" secondAttribute="width" id="gbg-OA-Rar"/>
+                <constraint firstItem="rnM-3g-7HF" firstAttribute="top" secondItem="eJt-Zv-twt" secondAttribute="top" id="hGq-zr-A81"/>
+                <constraint firstItem="wEJ-5t-Jj4" firstAttribute="top" secondItem="eJt-Zv-twt" secondAttribute="bottom" constant="10" id="hct-bf-m9C"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="leading" secondItem="Mnd-cA-hsU" secondAttribute="leading" id="jJA-A6-8Bb"/>
                 <constraint firstItem="Mnd-cA-hsU" firstAttribute="leading" secondItem="rnM-3g-7HF" secondAttribute="leading" id="kun-IV-Eqf"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="centerY" secondItem="hQH-SZ-Ccf" secondAttribute="centerY" id="m8W-DD-L9X"/>
                 <constraint firstItem="Qsb-yM-8Vv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="mMn-i0-Psh"/>
-                <constraint firstItem="rnM-3g-7HF" firstAttribute="top" secondItem="s57-sO-qkP" secondAttribute="top" id="mgg-He-OpC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eJt-Zv-twt" secondAttribute="trailing" constant="10" id="nqL-S6-bAf"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="width" secondItem="meL-PZ-4gx" secondAttribute="width" id="oiA-eK-Wen"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="height" secondItem="hQH-SZ-Ccf" secondAttribute="height" id="rUS-cb-Gc5"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="top" secondItem="Mnd-cA-hsU" secondAttribute="bottom" constant="20" id="vpZ-mp-XlZ"/>
@@ -214,7 +222,8 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Qsb-yM-8Vv" secondAttribute="trailing" constant="10" id="zHw-UH-yKC"/>
                 <constraint firstItem="oRf-aZ-Nps" firstAttribute="centerY" secondItem="meL-PZ-4gx" secondAttribute="centerY" id="zj7-cX-fAn"/>
             </constraints>
-            <point key="canvasLocation" x="47.65625" y="19.921875"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-80.46875" y="19.921875"/>
         </view>
     </objects>
     <resources>
@@ -224,7 +233,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -10,13 +10,19 @@ import UIKit
 class GCRecordListViewController: UIViewController {
     @IBOutlet weak var dateSelectButton: RightIconButton!
     @IBOutlet weak var recordButton: GCButton!
+    @IBOutlet weak var timeRemainingLabel: UILabel!
     
     private var selectedPopupIndex: IndexPath?
+    
+    private var viewModel: GCRecordListViewModelType!
+    
+    private var isStartedRecord: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initUI()
+        initViewModel()
     }
     
     
@@ -33,6 +39,32 @@ class GCRecordListViewController: UIViewController {
         
         recordButton.setGradient(type: .registButton)
         recordButton.setTitleColor(.black, for: .normal)
+        
+        timeRemainingLabel.isHidden = true
+    }
+    
+    private func initViewModel() {
+        let recordUseCase = GCDefaultRecordUseCase()
+        viewModel = GCRecordListViewModel(recordUseCase: recordUseCase)
+//        viewModel.timeRemaining.bind { [weak self] timeRemaining in
+//            self?.timeRemainingLabel.text = timeRemaining
+//        }
+    }
+    
+    private func startRecordState(_ isStarted: Bool) {
+        self.isStartedRecord = isStarted
+        
+        if isStarted {
+            timeRemainingLabel.isHidden = false
+            recordButton.setTitle("録音中", for: .normal)
+            recordButton.setGradient(type: .lightPink)
+            viewModel.startRecord()
+        } else {
+            timeRemainingLabel.isHidden = true
+            recordButton.setTitle("録音開始", for: .normal)
+            recordButton.setGradient(type: .registButton)
+            viewModel.stopRecord()
+        }
     }
     
     private func showPopup(at button: UIButton) {
@@ -66,15 +98,29 @@ class GCRecordListViewController: UIViewController {
     }
     
     @IBAction func onRecordTouched(_ sender: UIButton) {
+        self.isStartedRecord = !self.isStartedRecord
+        self.startRecordState(self.isStartedRecord)
+        
+        if self.viewModel.hideRecordAlert {
+            return
+        }
+        
+        if !self.isStartedRecord {
+            return
+        }
+        // just show alert when start record
         let alertVC = GCAlertCustomViewController()
         alertVC.setCancelButtonTitle("キャンセル")
         alertVC.setOkButtonTitle("OK")
         alertVC.titleText = "録音"
         alertVC.messageText = "服薬指導の録音を開始しますか"
         alertVC.checkBoxText = "以降、このポップアップを表示せず録音を開始する。"
-        alertVC.onOkTapped = { isChecked in
+        alertVC.onOkTapped = { [weak self] isChecked in
+            guard let self else { return }
             print("OK tapped. Checkbox selected: \(isChecked)")
+            self.viewModel.saveHideRecordAlert(isChecked)
         }
+        
         alertVC.onCancelTapped = {
             print("Cancel tapped.")
         }
@@ -84,7 +130,10 @@ class GCRecordListViewController: UIViewController {
     }
     
     @IBAction func onInfoButtonTouched(_ sender: UIButton) {
-        
+        // show alert info record
+        let alertVC = UIAlertController(title: "録音", message: "録音を開始すると、録音が開始されます。", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertVC, animated: true)
     }
     
 }

@@ -23,6 +23,7 @@ class GCButton: UIButton {
         case lightGray
         case lightOrange
         case lightBlue
+        case lightPink
         
         func getColors(alpha: CGFloat = 1) -> [UIColor] {
             let topColor: UIColor
@@ -61,7 +62,11 @@ class GCButton: UIButton {
             case .lightBlue:
                 topColor = UIColor(red: 0.676, green: 0.902, blue: 0.997, alpha: 1)
                 bottomColor = UIColor(red: 0.449, green: 0.793, blue: 0.953, alpha: 1)
+            case .lightPink:
+                topColor = UIColor(red: 1, green: 0.631, blue: 0.631, alpha: 1)
+                bottomColor = UIColor(red: 1, green: 0.580, blue: 0.831, alpha: 1)
             }
+            
             return [topColor, bottomColor]
         }
     }
