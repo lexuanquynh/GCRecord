@@ -19,6 +19,8 @@ class GCRecordListViewController: UIViewController {
     
     private var isStartedRecord: Bool = false
     
+    private var selectedIndexPaths: Set<IndexPath> = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -176,8 +178,9 @@ extension GCRecordListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GCTranscriptTableViewCell", for: indexPath) as! GCTranscriptTableViewCell
-        cell.binData("選択（タップ）した文章は、強調表示されます。選択したものを上部のSOAP等で薬歴に引用することができます。​", index: indexPath.row)
-        return cell
+            let isSelected = selectedIndexPaths.contains(indexPath)
+            cell.configureCell("選択（タップ）した文章は、強調表示されます。選択したものを上部のSOAP等で薬歴に引用することができます。​", index: indexPath.row, isSelected: isSelected)
+            return cell
     }
     
     // automatic height
@@ -185,4 +188,14 @@ extension GCRecordListViewController: UITableViewDelegate, UITableViewDataSource
         return UITableView.automaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if selectedIndexPaths.contains(indexPath) {
+            // Deselect and remove from selectedIndexPaths
+            selectedIndexPaths.remove(indexPath)
+        } else {
+           // Select and add to selectedIndexPath
+            selectedIndexPaths.insert(indexPath)
+        }
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
 }

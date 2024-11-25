@@ -16,16 +16,9 @@ class GCTranscriptTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-     
-        sContentView.backgroundColor = selected ? UIColor(hex: "E0E0E0") : self.currentColor
-    }
     
-    
-    func binData(_ text: String, index: Int) {
-        self.sContentView.backgroundColor = index % 2 == 0 ? .white : UIColor(hex: "E9F3FF")
+    func configureCell(_ text: String, index: Int, isSelected: Bool) {
+        self.sContentView.backgroundColor = isSelected ? UIColor(hex: "E0E0E0") : (index % 2 == 0 ? .white : UIColor(hex: "E9F3FF"))
         self.titleLabel.text = text
         self.currentColor = sContentView.backgroundColor
     }
