@@ -29,7 +29,6 @@ class GCRecordListViewController: UIViewController {
         
     }
     
-    
     private func initUI() {
         
         dateSelectButton.setTitle("Button my button", for: .normal)
@@ -50,6 +49,9 @@ class GCRecordListViewController: UIViewController {
         transcriptTableView.register(UINib(nibName: "GCTranscriptTableViewCell", bundle: nil), forCellReuseIdentifier: "GCTranscriptTableViewCell")
         transcriptTableView.delegate = self
         transcriptTableView.dataSource = self
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hidePopup))
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     private func initViewModel() {
@@ -161,10 +163,81 @@ class GCRecordListViewController: UIViewController {
     }
     
     @IBAction func onInfoButtonTouched(_ sender: UIButton) {
-        // show alert info record
-        let alertVC = UIAlertController(title: "録音", message: "録音を開始すると、録音が開始されます。", preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertVC, animated: true)
+        showPopup(message: "選択されている文字起こし情報・処方情報等をもとに、SOAP文章を自動的に作成します", below: sender)
+
+    }
+    
+    private var popupView: UIView?
+    private var backgroundView: UIView?
+    
+    func showPopup(message: String, below button: UIButton) {
+        if let existingPopup = popupView {
+            existingPopup.removeFromSuperview()
+            popupView = nil
+        }
+
+        // get key window
+        guard let keyWindow = UIApplication.shared.connectedScenes
+            .compactMap({ ($0 as? UIWindowScene)?.keyWindow })
+            .first else { return }
+
+        // Create a background view to cover the entire
+        let bgView = GCPopupView(frame: keyWindow.bounds)
+        bgView.backgroundColor = UIColor.clear
+        
+        // Add tap gesture to hide popup when tap outside
+        bgView.addTapGestureToHidePopup { [weak self] in
+            self?.hidePopup()
+        }
+        
+        keyWindow.addSubview(bgView)
+        self.backgroundView = bgView
+
+        // calculate button frame in key window
+        let buttonFrame = button.convert(button.bounds, to: keyWindow)
+
+        // Create popup view
+        let popup = UIView()
+        popup.backgroundColor = .white
+        popup.layer.cornerRadius = 10
+        popup.layer.shadowColor = UIColor.black.cgColor
+        popup.layer.shadowOpacity = 0.2
+        popup.layer.shadowOffset = CGSize(width: 0, height: 2)
+        popup.layer.shadowRadius = 4
+
+        // Add message label
+        let label = UILabel()
+        label.text = message
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        popup.addSubview(label)
+
+        // Add popup to key window
+        popup.translatesAutoresizingMaskIntoConstraints = false
+        keyWindow.addSubview(popup)
+
+        // Layout popup
+        NSLayoutConstraint.activate([
+            popup.topAnchor.constraint(equalTo: keyWindow.topAnchor, constant: buttonFrame.maxY + 8),
+            popup.centerXAnchor.constraint(equalTo: button.centerXAnchor),
+            popup.widthAnchor.constraint(lessThanOrEqualToConstant: 350),
+            label.topAnchor.constraint(equalTo: popup.topAnchor, constant: 8),
+            label.bottomAnchor.constraint(equalTo: popup.bottomAnchor, constant: -8),
+            label.leadingAnchor.constraint(equalTo: popup.leadingAnchor, constant: 8),
+            label.trailingAnchor.constraint(equalTo: popup.trailingAnchor, constant: -8)
+        ])
+
+        // Save the popup view
+        self.popupView = popup
+    }
+
+    @objc private func hidePopup() {
+        popupView?.removeFromSuperview()
+        popupView = nil
+
+        backgroundView?.removeFromSuperview()
+        backgroundView = nil
     }
     
 }
@@ -199,3 +272,5 @@ extension GCRecordListViewController: UITableViewDelegate, UITableViewDataSource
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
+
+

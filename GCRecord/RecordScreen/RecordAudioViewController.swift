@@ -197,3 +197,24 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+class GCPopupView: UIView {
+    func addTapGestureToHidePopup(_ hideBlock: @escaping () -> Void) {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOutside))
+        tapGesture.cancelsTouchesInView = false
+        self.addGestureRecognizer(tapGesture)
+        
+        // Save the block to associated object
+        objc_setAssociatedObject(self, &AssociatedKeys.hidePopupBlock, hideBlock, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+    
+    @objc private func handleTapOutside() {
+        if let hideBlock = objc_getAssociatedObject(self, &AssociatedKeys.hidePopupBlock) as? () -> Void {
+            hideBlock() // Gọi block để ẩn popup
+        }
+    }
+}
+
+private struct AssociatedKeys {
+    static var hidePopupBlock: Void?
+}
