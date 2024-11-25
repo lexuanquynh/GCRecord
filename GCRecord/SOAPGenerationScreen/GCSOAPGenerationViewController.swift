@@ -8,7 +8,7 @@
 import UIKit
 
 class GCSOAPGenerationViewController: UIViewController {
-
+    
     @IBOutlet weak var cancelButton: GCButton!
     @IBOutlet weak var hopitalButton: RightIconButton!
     
@@ -16,15 +16,16 @@ class GCSOAPGenerationViewController: UIViewController {
     @IBOutlet weak var soapListContainerView: UIView!
     
     private lazy var recordListVC: GCRecordListViewController = {
-        
         let recordListVC = GCRecordListViewController()
         
         return recordListVC
     }()
     
+    private var selectedPopupIndex: IndexPath?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.initViews()
     }
     
@@ -34,9 +35,6 @@ class GCSOAPGenerationViewController: UIViewController {
         hopitalButton.frame = CGRect(x: 50, y: 50, width: 200, height: 50)
         hopitalButton.backgroundColor = .white
         
-        // set image insert left is hopitalButton width - 20
-//        hopitalButton.configureImageToRight(withPadding: 20)
-
         // add GCRecordListViewController to recordListContainerView
         self.addChild(recordListVC)
         recordListContainerView.addSubview(recordListVC.view)
@@ -54,23 +52,46 @@ class GCSOAPGenerationViewController: UIViewController {
         // set frame for recordListVC
         recordListVC.view.frame = recordListContainerView.bounds
     }
-
-}
-
-extension UIButton {
-    func configureImageToRight(withPadding padding: CGFloat = 20) {
-        guard let currentImage = self.imageView?.image else { return }
+    
+    
+    @IBAction func onCancelTouched(_ sender: UIButton) {
         
-        let width = self.bounds.size.width
-        let imageWidth = currentImage.size.width
-        let space = width - 50 - imageWidth
-
-        // Set up the button configuration
-        var config = UIButton.Configuration.plain()
-        config.image = currentImage
-        config.imagePlacement = .trailing // Place image to the right
-        config.imagePadding = space - 20 // Set space between title and image
-        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 60) // Adjust trailing inset
-        self.configuration = config
     }
+    
+    @IBAction func onSelectContentButtonTouched(_ sender: UIButton) {
+        self.showPopup(at: sender)
+    }
+    
+    private func showPopup(at button: UIButton) {
+        let popupData = [
+            "22/10/19 10:30 仮管理薬剤師",
+            "22/10/29 10:30 仮管理薬剤師",
+            "22/10/09 10:30 仮管理薬剤師",
+            "22/10/19 10:30 仮管理薬剤師",
+            "22/10/09 10:30 仮管理薬剤師"
+        ]
+        
+        let popupVC = GCPopupViewController(data: popupData, selectedIndex: selectedPopupIndex)
+        
+        
+        // Set the popup width equal to the button width
+        popupVC.setPopupSize(width: button.frame.width, height: 250)
+        
+        // Callback for item selection
+        popupVC.didSelectItem = { [weak self] selectedItem in
+            print("Selected item: \(selectedItem)")
+            self?.selectedPopupIndex = popupVC.selectedIndex // Update selected index
+        }
+        
+        // Configure popover presentation
+        popupVC.modalPresentationStyle = .popover
+        if let popoverController = popupVC.popoverPresentationController {
+            popoverController.sourceView = button
+            popoverController.sourceRect = button.bounds
+            popoverController.permittedArrowDirections = .up
+        }
+        
+        present(popupVC, animated: true, completion: nil)
+    }
+    
 }

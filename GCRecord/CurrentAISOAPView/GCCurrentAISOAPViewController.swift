@@ -8,14 +8,13 @@
 import UIKit
 
 class GCCurrentAISOAPViewController: UIViewController {
-
     @IBOutlet weak var recordCitedButton: GCButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         initUI()
     }
-
+    
     private func initUI() {
         recordCitedButton.setGradient(type: .registButton)
     }
@@ -23,5 +22,4 @@ class GCCurrentAISOAPViewController: UIViewController {
     @IBAction func onRecordCitedButtonTouched(_ sender: UIButton) {
         
     }
-    
 }

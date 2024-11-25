@@ -45,6 +45,9 @@
                             <state key="normal" title="Button" image="down_ico">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="onSelectContentButtonTouched:" destination="-1" eventType="touchUpInside" id="qPv-C5-9da"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wsx-TW-niQ" customClass="GCButton" customModule="GCRecord" customModuleProvider="target">
                             <rect key="frame" x="10" y="35" width="70" height="45"/>
@@ -55,6 +58,9 @@
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="戻る"/>
+                            <connections>
+                                <action selector="onCancelTouched:" destination="-1" eventType="touchUpInside" id="e6f-B1-d9O"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="underPageBackgroundColor"/>
